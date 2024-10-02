@@ -43,8 +43,6 @@ Este proyecto es un microservicio para la gestión de tareas utilizando **FastAP
 
 ## Uso
 
-### Endpoints
-
 **Tareas:**  
 - **GET /tasks/**: Obtener todas las tareas.
 - **POST /tasks/**: Crear una nueva tarea.
@@ -59,19 +57,65 @@ Este proyecto es un microservicio para la gestión de tareas utilizando **FastAP
 - **PUT /comments/{comment_id}**: Actualizar un comentario por ID.
 - **DELETE /comments/{comment_id}**: Eliminar un comentario por ID.
 
-### Ejemplo de `.env`
+## Endpoints
+
+### Tareas:
+- **GET /tasks/**: Obtener todas las tareas.
+- **POST /tasks/**: Crear una nueva tarea.
+    - **Body**:
+      ```json
+      {
+        "nombre": "string",
+        "descripcion": "string",
+        "estado": "string",
+        "proyecto_id": 0,
+        "responsable_id": 0,
+        "fecha_vencimiento": "string"
+      }
+      ```
+- **GET /tasks/{task_id}**: Obtener una tarea por ID.
+- **PUT /tasks/{task_id}**: Actualizar una tarea por ID.
+    - **Body**:
+      ```json
+      {
+        "nombre": "string",
+        "descripcion": "string",
+        "estado": "string",
+        "proyecto_id": 0,
+        "responsable_id": 0,
+        "fecha_vencimiento": "string"
+      }
+      ```
+- **DELETE /tasks/{task_id}**: Eliminar una tarea por ID.
+
+### Comentarios:
+- **GET /comments/**: Obtener todos los comentarios.
+- **POST /comments/**: Crear un nuevo comentario.
+    - **Body**:
+      ```json
+      {
+        "tarea_id": 0,
+        "contenido": "string",
+        "usuario_id": 0
+      }
+      ```
+- **GET /comments/{comment_id}**: Obtener un comentario por ID.
+- **PUT /comments/{comment_id}**: Actualizar un comentario por ID.
+    - **Body**:
+      ```json
+      {
+        "tarea_id": 0,
+        "contenido": "string",
+        "usuario_id": 0
+      }
+      ```
+- **DELETE /comments/{comment_id}**: Eliminar un comentario por ID.
+- 
+### Ejemplo de `.env` para las variables de entorno de la base de datos:
 
 ```ini
 DATABASE_URL=postgresql://usuario:password@localhost:5432/nombre_base_datos
 ```
-
-## Scripts
-
-- **Inicializar la base de datos:**
-
-  ```bash
-  python app/initial_data.py
-  ```
 
 ## Contribuir
 
