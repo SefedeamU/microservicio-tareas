@@ -1,9 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.crud import tasks as crud_tasks
-from app.schemas.task import Task, TaskCreate, TaskUpdate
+from app.schemas.task import Task as TaskSchema, Task, TaskCreate, TaskUpdate
 from app.db.session import SessionLocal
-
+from app.crud.tasks import get_tasks_by_project_id
+from typing import List
 router = APIRouter()
 
 def get_db():
@@ -35,3 +36,10 @@ def update_task(task_id: int, task: TaskUpdate, db: Session = Depends(get_db)):
 @router.delete("/{task_id}", response_model=Task)
 def delete_task(task_id: int, db: Session = Depends(get_db)):
     return crud_tasks.delete_task(db=db, task_id=task_id)
+
+@router.get("/tasks", response_model=List[TaskSchema])
+async def read_tasks(proyecto_id: int, db: Session = Depends(get_db)):
+    tasks = get_tasks_by_project_id(db, proyecto_id)
+    if not tasks:
+        raise HTTPException(status_code=404, detail="Tasks not found")
+    return tasks

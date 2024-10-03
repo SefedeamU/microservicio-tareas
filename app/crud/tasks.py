@@ -30,3 +30,6 @@ def delete_task(db: Session, task_id: int):
         db.delete(db_task)
         db.commit()
     return db_task
+
+def get_tasks_by_project_id(db: Session, proyecto_id: int):
+    return db.query(Task).filter(Task.proyecto_id == proyecto_id).all()
