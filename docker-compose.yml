@@ -8,3 +8,9 @@ services:
       - .:/app
     ports:
       - "8002:8000"
+    networks:
+      - microservicios_network_mv1
+
+networks:
+  microservicios_network_mv1:
+    external: true
