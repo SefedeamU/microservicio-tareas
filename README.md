@@ -140,6 +140,9 @@ DATABASE_URL=postgresql://usuario:password@localhost:5432/nombre_base_datos
 
 5. Crear un Pull Request.
 
+## Puerto
+La aplicación se ejecuta en el puerto `8002`. Asegúrate de que este puerto esté disponible en tu máquina.
+
 ## Licencia
 
 Este proyecto está licenciado bajo los términos de la licencia **MIT**.
