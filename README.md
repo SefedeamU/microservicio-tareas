@@ -110,7 +110,7 @@ Este proyecto es un microservicio para la gestión de tareas utilizando **FastAP
       }
       ```
 - **DELETE /comments/{comment_id}**: Eliminar un comentario por ID.
-- 
+ 
 ### Ejemplo de `.env` para las variables de entorno de la base de datos:
 
 ```ini
